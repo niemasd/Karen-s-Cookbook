@@ -1,32 +1,36 @@
-\documentclass[a4paper]{article}
+\documentclass{article}
 
 % import packages
+\usepackage[paperheight=9.25in, paperwidth=7.5in, margin=2cm]{geometry}
+\usepackage[nonumber, index]{cuisine}
 \usepackage{siunitx}
-\usepackage[margin=2cm]{geometry}
-\usepackage[index]{cuisine}
 \usepackage{tocloft}
+
+% set image path
+\usepackage{graphicx}
+\graphicspath{ {./photos/} }
+
+% set font sizes
+\usepackage{titlesec}
+\titleformat*{\section}{\Huge\bfseries} % section title
+\renewcommand*{\cftsecfont}{\Large} % ToC section title
+\renewcommand*{\cftsecpagefont}{\Large} % ToC section page
+\renewcommand*{\recipetitlefont}{\huge} % recipe title
 
 % main document
 \begin{document}
 
-% table of contents
-\renewcommand{\contentsname}{\hfill\bfseries\Large Table of Contents\hfill}\renewcommand{\cftaftertoctitle}{\hfill} % change ToC title and center
-\tableofcontents % create ToC
-\newpage % page break after ToC
+% include table of contents
+\include{toc}
 
-% hide section numbers
-\renewcommand{\thesection}{}
-\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
-\makeatletter
-\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
-\let\sectionignore\@gobbletwo
-\let\latex@numberline\numberline
-\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
-\makeatother
-
-% pressure cooker recipes
+% include recipe sections
+% section title
 \section{Pressure Cooker Recipes}
+
+% section page body
 Some stuff about pressure cooker recipes (maybe a photo).
+
+% include recipes
 \include{recipes/buffalo_chicken_pressure_cooker}
 
 \end{document}
